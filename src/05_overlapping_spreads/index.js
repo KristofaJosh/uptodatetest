@@ -7,20 +7,24 @@
 
 exports.overlappingSpreads = function (data) {
     //TODO implement me
-    const getNeighbour = () => {
-        let all = [];
-        let unique = [];
-        for (el of data) {
-            all.push(el - 1)
-            all.push(el + 1)
-        }
-        unique = Array.from(new Set(all))
-        return [all, unique]
+    let duplicates = [];
+    let all = [];
+    let sum = [];
+
+    for (el of data) {
+        all.push(el - 1)
+        all.push(el + 1)
     }
+    unique = Array.from(new Set(all))
 
-    const [original, unique] = getNeighbour()
+    all.forEach(el => {
+        if (duplicates.includes(el)) {
+            sum.push(el)
+        } else {
+            duplicates.push(el)
+        }
+    })
 
-    
-    return original.filter(el => unique.includes(el));
+    return sum.reduce((a, b) => a + b, 0)
 }
 

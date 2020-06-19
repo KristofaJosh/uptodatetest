@@ -14,33 +14,21 @@
 // 
 // we can see that the sequence "jump fire back" is repeated two times.
 
-// l - 1 12 13
-// R - 2 14
-// F - 3 5 10
-// J - 4 9 
-// B - 6 11
 
 
-
-let botProtection = function(data) {
+exports.botProtection = function (data) {
+    let foundSequence = []
     //TODO implement me
-    
-}
+    // Detect if 3 sequential commands are repeated at least 2 times
+    for (let i = 0; i < data.length; i++) {
+        let searchWord = data[i] + ' ' + data[i + 1] + ' ' + data[i + 2];
+        if (foundSequence.includes(searchWord)) {
+            return true
+        } else {
+            foundSequence.push(searchWord)
+        }
+    }
 
-const actions = [
-    "left", 
-    "right", 
-    "fire", 
-    "jump", 
-    "fire", 
-    "back", 
-    "forward", 
-    "forward", 
-    "jump", 
-    "fire", 
-    "back", 
-    "left", 
-    "left", 
-    "right"
-];
-console.log(botProtection(actions))
+
+
+}
